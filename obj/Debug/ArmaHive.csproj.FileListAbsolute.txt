@@ -1,0 +1,7 @@
+C:\Users\alexm_000\documents\visual studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\ArmaHive.dll
+C:\Users\alexm_000\documents\visual studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\ArmaHive.pdb
+C:\Users\alexm_000\documents\visual studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\Arma2Net.AddInProxy.dll
+C:\Users\alexm_000\documents\visual studio 2013\Projects\ArmaHive\ArmaHive\obj\Debug\ArmaHive.dll
+C:\Users\alexm_000\documents\visual studio 2013\Projects\ArmaHive\ArmaHive\obj\Debug\ArmaHive.pdb
+C:\Users\alexm_000\Documents\Visual Studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\MySql.Data.dll
+C:\Users\alexm_000\documents\visual studio 2013\Projects\ArmaHive\ArmaHive\obj\Debug\ArmaHive.csprojResolveAssemblyReference.cache

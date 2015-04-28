@@ -1,0 +1,6 @@
+C:\Users\alexm_000\Documents\Visual Studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\Arma2Net.AddInProxy.dll
+C:\Users\alexm_000\Documents\Visual Studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\ArmaHivePlugin.dll
+C:\Users\alexm_000\Documents\Visual Studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\ArmaHivePlugin.pdb
+C:\Users\alexm_000\Documents\Visual Studio 2013\Projects\ArmaHive\ArmaHive\obj\Debug\ArmaHivePlugin.dll
+C:\Users\alexm_000\Documents\Visual Studio 2013\Projects\ArmaHive\ArmaHive\obj\Debug\ArmaHivePlugin.pdb
+C:\Users\alexm_000\Documents\Visual Studio 2013\Projects\ArmaHive\ArmaHive\bin\Debug\MySql.Data.dll
