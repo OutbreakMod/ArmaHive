@@ -13,7 +13,7 @@ namespace ArmaHive
                 ConnString.Server = "localhost";
                 ConnString.Port = 3306;
                 ConnString.UserID = "root";
-                ConnString.Password = "dickface31";
+                ConnString.Password = "password";
                 ConnString.Database = "arma_hive";
                 ConnString.MinimumPoolSize = 0;
                 ConnString.MaximumPoolSize = 30;
