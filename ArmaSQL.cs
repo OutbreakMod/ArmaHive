@@ -10,11 +10,11 @@ namespace ArmaHive
         {
             MySqlConnectionStringBuilder ConnString = new MySqlConnectionStringBuilder();
             {
-                ConnString.Server = "localhost";
-                ConnString.Port = 3306;
-                ConnString.UserID = "root";
-                ConnString.Password = "password";
-                ConnString.Database = "arma_hive";
+                ConnString.Server = ArmaHiveSettings.config["MYSQL_HOSTNAME"];
+                ConnString.Port = uint.Parse(ArmaHiveSettings.config["MYSQL_PORT"]);
+                ConnString.UserID = ArmaHiveSettings.config["MYSQL_USERNAME"];
+                ConnString.Password = ArmaHiveSettings.config["MYSQL_PASSWORD"];
+                ConnString.Database = ArmaHiveSettings.config["MYSQL_DATABASE"];
                 ConnString.MinimumPoolSize = 0;
                 ConnString.MaximumPoolSize = 30;
             }

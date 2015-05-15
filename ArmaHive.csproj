@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArmaHive.cs" />
+    <Compile Include="ArmaHiveSettings.cs" />
     <Compile Include="ArmaSQL.cs" />
+    <Compile Include="INIFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
