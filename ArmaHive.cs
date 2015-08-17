@@ -26,33 +26,6 @@ namespace ArmaHive
             return "[" + DateTime.Now.Year + "," + DateTime.Now.Month + "," + DateTime.Now.Day + "," + DateTime.Now.Hour + "," + DateTime.Now.Minute + "]";
         }
 
-        public string GetUserStorage()
-        {
-             MySqlCommand command = ArmaSQL.GetConnection().CreateCommand();
-
-            DataTable dataTable = new DataTable();
-
-            command.Parameters.AddWithValue("@name", GetConfig("HIVE_NAME"));
-            command.CommandText = "SELECT * FROM users_storage WHERE server_name = @name";
-
-            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-            {
-                adapter.Fill(dataTable);
-            }
-
-            command.CommandText = null;
-            List<String> storage = new List<String>();
-
-            foreach (DataRow row in dataTable.Rows)
-            {
-                storage.Add("[" + row["id"] + ", \"" + row["class"] + "\", " + row["position"] + ", " + row["dir"] + ", " + row["inventory"] + "]");
-            }
-
-            command.Connection.Close();
-
-            return "[" + string.Join(",", storage.ToArray()) + "]";
-        }
-
         public string GetDateTimezone()
         {
             DateTime time = DateTime.Now;
@@ -95,7 +68,71 @@ namespace ArmaHive
             return found;
         }
 
-        public string NewObject(String clazz, String position, String dir, String inventory)
+        public string GetObjectSpawns()
+        {
+            MySqlCommand command = ArmaSQL.GetConnection().CreateCommand();
+
+            DataTable dataTable = new DataTable();
+
+            command.Parameters.AddWithValue("@name", GetConfig("HIVE_NAME"));
+            command.CommandText = "SELECT * FROM object_spawns";
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            command.CommandText = null;
+            List<String> storage = new List<String>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                storage.Add("[" + row["id"] + ", \"" + row["class"] + "\", " + row["position"] + ", " + row["dir"] + "]");
+            }
+
+            command.Connection.Close();
+
+            return "[" + string.Join(",", storage.ToArray()) + "]";
+        }
+
+        public string GetObjectStorage()
+        {
+            MySqlCommand command = ArmaSQL.GetConnection().CreateCommand();
+
+            DataTable dataTable = new DataTable();
+
+            command.Parameters.AddWithValue("@name", GetConfig("HIVE_NAME"));
+            command.CommandText = "SELECT * FROM object_data WHERE server_name = @name";
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            command.CommandText = null;
+            List<String> storage = new List<String>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                if (row["inventory"].ToString().Length == 0)
+                {
+                    row["inventory"] = "[]";
+                }
+
+                if (row["hitpoints"].ToString().Length == 0)
+                {
+                    row["hitpoints"] = "[]";
+                }
+
+                storage.Add("[" + row["id"] + ", \"" + row["class"] + "\", " + row["position"] + ", " + row["dir"] + ", " + row["inventory"] + ", " + row["hitpoints"] + ", " + row["fuel"] + ", " + row["damage"] + "]");
+            }
+
+            command.Connection.Close();
+
+            return "[" + string.Join(",", storage.ToArray()) + "]";
+        }
+
+        public string NewObject(String clazz, String position, String dir, String inventory, String hitPoints, String fuel, String damage)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
@@ -105,7 +142,10 @@ namespace ArmaHive
             command.Parameters.AddWithValue("@dir", dir);
             command.Parameters.AddWithValue("@server_name", GetConfig("HIVE_NAME"));
             command.Parameters.AddWithValue("@inventory", inventory);
-            command.CommandText = "INSERT INTO users_storage (class, position, dir, server_name, inventory) VALUES (@class, @position, @dir, @server_name, @inventory)";
+            command.Parameters.AddWithValue("@hitpoints", hitPoints);
+            command.Parameters.AddWithValue("@fuel", fuel);
+            command.Parameters.AddWithValue("@damage", damage);
+            command.CommandText = "INSERT INTO object_data (class, position, dir, server_name, inventory, hitpoints, fuel, damage) VALUES (@class, @position, @dir, @server_name, @inventory, @hitpoints, @fuel, @damage)";
 
             String found = string.Empty;
 
@@ -127,7 +167,7 @@ namespace ArmaHive
             return found;
         }
 
-        public static string UpdateObject(String id, String inventory)
+        public static string UpdateObject(String id, String inventory, String hitPoints, String position, String dir, String fuel, String damage)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
@@ -135,7 +175,12 @@ namespace ArmaHive
             command.Parameters.AddWithValue("@id", int.Parse(id));
             command.Parameters.AddWithValue("@last_updated", DateTime.Now.ToString());
             command.Parameters.AddWithValue("@inventory", inventory);
-            command.CommandText = "UPDATE users_storage SET inventory = @inventory, last_updated = NOW() WHERE id = @id";
+            command.Parameters.AddWithValue("@hitpoints", hitPoints);
+            command.Parameters.AddWithValue("@position", position);
+            command.Parameters.AddWithValue("@dir", dir);
+            command.Parameters.AddWithValue("@fuel", fuel);
+            command.Parameters.AddWithValue("@damage", damage);
+            command.CommandText = "UPDATE object_data SET inventory = @inventory, last_updated = NOW(), hitpoints = @hitpoints, position = @position, dir = @dir, fuel = @fuel, damage = @damage WHERE id = @id";
 
             String found = string.Empty;
 
