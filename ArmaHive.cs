@@ -74,7 +74,7 @@ namespace ArmaHive
 
             DataTable dataTable = new DataTable();
 
-            command.Parameters.AddWithValue("@name", GetConfig("HIVE_NAME"));
+            //command.Parameters.AddWithValue("@name", Hive);
             command.CommandText = "SELECT * FROM object_spawns";
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
@@ -95,13 +95,13 @@ namespace ArmaHive
             return "[" + string.Join(",", storage.ToArray()) + "]";
         }
 
-        public string GetObjectStorage()
+        public string GetObjectStorage(string Hive)
         {
             MySqlCommand command = ArmaSQL.GetConnection().CreateCommand();
 
             DataTable dataTable = new DataTable();
 
-            command.Parameters.AddWithValue("@name", GetConfig("HIVE_NAME"));
+            command.Parameters.AddWithValue("@name", Hive);
             command.CommandText = "SELECT * FROM object_data WHERE server_name = @name";
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
@@ -132,7 +132,7 @@ namespace ArmaHive
             return "[" + string.Join(",", storage.ToArray()) + "]";
         }
 
-        public string NewObject(String clazz, String position, String dir, String inventory, String hitPoints, String fuel, String damage)
+        public string NewObject(string Hive, string clazz, string position, String dir, String inventory, String hitPoints, String fuel, String damage)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
@@ -140,7 +140,7 @@ namespace ArmaHive
             command.Parameters.AddWithValue("@class", clazz);
             command.Parameters.AddWithValue("@position", position);
             command.Parameters.AddWithValue("@dir", dir);
-            command.Parameters.AddWithValue("@server_name", GetConfig("HIVE_NAME"));
+            command.Parameters.AddWithValue("@server_name", Hive);
             command.Parameters.AddWithValue("@inventory", inventory);
             command.Parameters.AddWithValue("@hitpoints", hitPoints);
             command.Parameters.AddWithValue("@fuel", fuel);
@@ -167,7 +167,7 @@ namespace ArmaHive
             return found;
         }
 
-        public static string UpdateObject(String id, String inventory, String hitPoints, String position, String dir, String fuel, String damage)
+        public static string UpdateObject(string Hive, string id, string inventory, string hitPoints, string position, string dir, string fuel, string damage)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();

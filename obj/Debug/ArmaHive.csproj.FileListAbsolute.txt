@@ -10,3 +10,7 @@ C:\Users\Alex\Documents\GitHub\ArmaHive\bin\Debug\ArmaHive.pdb
 C:\Users\Alex\Documents\GitHub\ArmaHive\obj\Debug\ArmaHive.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\ArmaHive\obj\Debug\ArmaHive.dll
 C:\Users\Alex\Documents\GitHub\ArmaHive\obj\Debug\ArmaHive.pdb
+C:\Users\Alex\Documents\Visual Studio 2015\Projects\ArmaHive\bin\Debug\ArmaHive.dll
+C:\Users\Alex\Documents\Visual Studio 2015\Projects\ArmaHive\bin\Debug\ArmaHive.pdb
+C:\Users\Alex\Documents\Visual Studio 2015\Projects\ArmaHive\obj\Debug\ArmaHive.dll
+C:\Users\Alex\Documents\Visual Studio 2015\Projects\ArmaHive\obj\Debug\ArmaHive.pdb

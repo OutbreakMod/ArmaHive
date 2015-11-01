@@ -16,7 +16,7 @@ namespace ArmaHive
             if (config == null)
             {
                 config = new Dictionary<string, string>();
-                parser = new INIFile("ArmaHive/configuration.ini");
+                parser = new INIFile("C:/ArmaHive/configuration.ini");
 
                 config.Add("MYSQL_HOSTNAME", parser.Read("MySQL", "Hostname"));
                 config.Add("MYSQL_USERNAME", parser.Read("MySQL", "Username"));
@@ -27,7 +27,7 @@ namespace ArmaHive
                 config.Add("TIME_SETTING", parser.Read("Time", "Setting"));
                 config.Add("TIME_VALUE", parser.Read("Time", "Value"));
 
-                config.Add("HIVE_NAME", parser.Read("Hive", "Name"));
+                //config.Add("HIVE_NAME", parser.Read("Hive", "Name"));
             }
         }
     }
