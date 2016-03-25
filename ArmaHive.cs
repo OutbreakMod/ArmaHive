@@ -48,7 +48,7 @@ namespace ArmaHive
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
 
-            command.CommandText = "INSERT INTO users (uuid, name, position, inventory) VALUES ('" + uuid + "', '" + name + "', '" + position + "', '" + inventory +"')";
+            command.CommandText = "INSERT INTO users (uuid, name, position, inventory) VALUES ('" + uuid + "', '" + name + "', '" + position + "', '" + Utilities.arrayToString(inventory) + "')";
 
             String found = string.Empty;
 
@@ -66,6 +66,35 @@ namespace ArmaHive
             sqlConnecton.Close();
 
             return found;
+        }
+
+        public string GetUser(string uuid)
+        {
+            string output = "[]";
+
+            MySqlConnection connection = ArmaSQL.GetConnection();
+            MySqlCommand command = connection.CreateCommand();
+            DataTable dataTable = new DataTable();
+            
+            command.Parameters.AddWithValue("@uuid", uuid);
+            command.CommandText = "SELECT id, name, uuid, inventory, position, medical FROM users WHERE uuid = @uuid LIMIT 1";
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            command.CommandText = null;
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                output = "[" + row["id"] + ", " + row["uuid"] + ", " + Utilities.stringToArray(row["inventory"].ToString()) + ", " + row["position"] + ", " + row["medical"] + "]";
+                connection.Close();
+            }
+
+            return output;
         }
 
         public string GetObjectSpawns()
@@ -167,7 +196,7 @@ namespace ArmaHive
             return found;
         }
 
-        public static string UpdateObject(string Hive, string id, string inventory, string hitPoints, string position, string dir, string fuel, string damage)
+        public static string UpdateObject(string id, string inventory, string hitPoints, string position, string dir, string fuel, string damage)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
@@ -199,14 +228,23 @@ namespace ArmaHive
             return found;
         }
 
-
         public string Select(String table, String field, String where, String equals)
         {
+            if (field == "inventory")
+            {
+                return Utilities.stringToArray(ArmaSQL.GetField(table, field, where, equals));
+            }
+
             return ArmaSQL.GetField(table, field, where, equals);
         }
 
         public string Update(String table, String field, String fieldSet, String where, String equals)
         {
+            if (field == "inventory")
+            {
+                fieldSet = Utilities.arrayToString(fieldSet);
+            }
+
             return ArmaSQL.ExecuteUpdate(table, field, fieldSet, where, equals);
         }
 
