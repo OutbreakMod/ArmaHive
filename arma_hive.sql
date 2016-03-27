@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2016 at 08:12 AM
+-- Generation Time: Mar 27, 2016 at 08:20 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,33 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `arma_hive`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `loot_building_tags`
---
-
-CREATE TABLE IF NOT EXISTS `loot_building_tags` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class` varchar(50) NOT NULL,
-  `loot_respawn` int(11) NOT NULL DEFAULT '300',
-  `zombie_type` varchar(50) NOT NULL,
-  `loot_tag` tinytext NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `loot_building_tags`
---
-
-INSERT INTO `loot_building_tags` (`id`, `class`, `loot_respawn`, `zombie_type`, `loot_tag`) VALUES
-(1, 'Land_Farm_Cowshed_a', 300, 'wild', '["GeneralTools", "CivillianFoodStorage", "CivillianMagazines", "Farm"]'),
-(2, 'Land_Farm_Cowshed_b', 300, 'wild', '["GeneralTools", "CivillianFoodStorage", "Farm", "CivillianMagazines"]'),
-(3, 'Land_Farm_Cowshed_c', 300, 'wild', '["GeneralTools", "CivillianFoodStorage", "Farm", "CivillianMagazines"]'),
-(4, 'Land_stodola_old_open', 300, 'wild', '["GeneralTools", "CivillianFoodStorage", "Farm", "CivillianMagazines"]'),
-(5, 'Land_stodola_open', 300, 'wild', '["GeneralTools", "CivillianFoodStorage", "Farm", "CivillianMagazines"]'),
-(6, 'Land_Misc_deerstand', 600, 'wild', '["GeneralTools", "CivillianFoodStorage", "MiscMedical", "Hunting", "Magazines", "CivillianMagazines"]');
 
 -- --------------------------------------------------------
 
@@ -119,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `uuid`, `inventory`, `position`, `medical`) VALUES
-(33, 'AmazingAussie', '76561198127078878', '["","G_Aviator","U_C_Poloshirt_stripped",["axe"],"",[],"B_Kitbag_mcamo",["7Rnd_45ACP_M","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_TE1_White_Tracer_545x39_AK_M","CUP_30Rnd_TE1_White_Tracer_545x39_AK_M","CUP_30Rnd_762x39_AK47_M","CUP_30Rnd_762x39_AK47_M","CUP_30Rnd_762x39_AK47_M","CUP_30Rnd_TE1_Yellow_Tracer_545x39_AK_M","CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M","CUP_75Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M","CUP_15Rnd_9x19_M9"],"CUP_arifle_RPK74",["","","",""],["CUP_75Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M"],"",["","","",""],[],"CUP_hgun_M9",["","","",""],["CUP_15Rnd_9x19_M9"],["ItemMap"]]', '[3664.58,7752.42,0.00134277]', '[0,6000,6000]');
+(33, 'AmazingAussie', '76561198127078878', '["","G_Aviator","U_C_Poloshirt_stripped",["axe"],"",[],"B_Kitbag_mcamo",["7Rnd_45ACP_M","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_556x45_Stanag","CUP_30Rnd_762x39_AK47_M","CUP_30Rnd_762x39_AK47_M","CUP_30Rnd_762x39_AK47_M","CUP_10Rnd_762x54_SVD_M"],"CUP_srifle_SVD_pso",["","","CUP_optic_PSO_1",""],["CUP_10Rnd_762x54_SVD_M"],"",["","","",""],[],"CUP_hgun_M9",["","","",""],["CUP_15Rnd_9x19_M9"],["ItemMap"]]', '[13190.6,14928.2,0.000961304]', '[0,6000,6000]');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
