@@ -161,11 +161,12 @@ namespace ArmaHive
             return "[" + string.Join(",", storage.ToArray()) + "]";
         }
 
-        public string NewObject(string Hive, string clazz, string position, String dir, String inventory, String hitPoints, String fuel, String damage)
+        public string NewObject(string Hive, string ID, string clazz, string position, String dir, String inventory, String hitPoints, String fuel, String damage)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
 
+            command.Parameters.AddWithValue("@id", ID);
             command.Parameters.AddWithValue("@class", clazz);
             command.Parameters.AddWithValue("@position", position);
             command.Parameters.AddWithValue("@dir", dir);
@@ -174,7 +175,7 @@ namespace ArmaHive
             command.Parameters.AddWithValue("@hitpoints", hitPoints);
             command.Parameters.AddWithValue("@fuel", fuel);
             command.Parameters.AddWithValue("@damage", damage);
-            command.CommandText = "INSERT INTO object_data (class, position, dir, server_name, inventory, hitpoints, fuel, damage) VALUES (@class, @position, @dir, @server_name, @inventory, @hitpoints, @fuel, @damage)";
+            command.CommandText = "INSERT INTO object_data (id, class, position, dir, server_name, inventory, hitpoints, fuel, damage) VALUES (@id, @class, @position, @dir, @server_name, @inventory, @hitpoints, @fuel, @damage)";
 
             String found = string.Empty;
 
