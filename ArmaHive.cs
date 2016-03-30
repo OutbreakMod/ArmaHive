@@ -43,6 +43,27 @@ namespace ArmaHive
             return "[" + time.Year + "," + time.Month + "," + time.Day + "," + time.Hour + "," + time.Minute + "]";
         }
 
+        public bool TestConnection()
+        {
+            MySqlConnection sqlConnecton = null; 
+
+            try
+            {
+                sqlConnecton = ArmaSQL.GetConnection();
+            }
+            catch
+            {
+                return false;
+            }
+
+            if (sqlConnecton != null)
+            {
+                sqlConnecton.Close();
+            }
+
+            return true;
+        }
+
         public string NewUser(String uuid, String name, String position, String inventory)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
