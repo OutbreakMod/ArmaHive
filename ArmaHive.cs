@@ -174,7 +174,7 @@ namespace ArmaHive
                     row["hitpoints"] = "[]";
                 }
 
-                storage.Add("[" + row["id"] + ", \"" + row["class"] + "\", " + row["position"] + ", " + row["inventory"] + ", " + row["hitpoints"] + ", " + row["fuel"] + ", " + row["damage"] + "]");
+                storage.Add("[" + row["id"] + ", \"" + row["class"] + "\", " + row["position"] + ", " + row["inventory"] + ", " + row["hitpoints"] + ", " + row["fuel"] + ", " + row["damage"] + ", " +  row["lifetime"] + "]");
             }
 
             command.Connection.Close();
@@ -182,7 +182,7 @@ namespace ArmaHive
             return "[" + string.Join(",", storage.ToArray()) + "]";
         }
 
-        public string NewObject(string Hive, string ID, string clazz, string position, String inventory, String hitPoints, String fuel, String damage)
+        public string NewObject(string Hive, string ID, string clazz, string position, String inventory, String hitPoints, String fuel, String damage, String lifetime)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
@@ -195,7 +195,8 @@ namespace ArmaHive
             command.Parameters.AddWithValue("@hitpoints", hitPoints);
             command.Parameters.AddWithValue("@fuel", fuel);
             command.Parameters.AddWithValue("@damage", damage);
-            command.CommandText = "INSERT INTO object_data (id, class, position, server_name, inventory, hitpoints, fuel, damage) VALUES (@id, @class, @position, @server_name, @inventory, @hitpoints, @fuel, @damage)";
+            command.Parameters.AddWithValue("@lifetime", lifetime);
+            command.CommandText = "INSERT INTO object_data (id, class, position, server_name, inventory, hitpoints, fuel, damage, lifetime) VALUES (@id, @class, @position, @server_name, @inventory, @hitpoints, @fuel, @damage, @lifetime)";
 
             String found = string.Empty;
 
@@ -217,7 +218,7 @@ namespace ArmaHive
             return found;
         }
 
-        public static string UpdateObject(string id, string inventory, string hitPoints, string position, string fuel, string damage)
+        public static string UpdateObject(string id, string inventory, string hitPoints, string position, string fuel, string damage, string lifetime)
         {
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
@@ -229,7 +230,8 @@ namespace ArmaHive
             command.Parameters.AddWithValue("@position", position);
             command.Parameters.AddWithValue("@fuel", fuel);
             command.Parameters.AddWithValue("@damage", damage);
-            command.CommandText = "UPDATE object_data SET inventory = @inventory, last_updated = NOW(), hitpoints = @hitpoints, position = @position, fuel = @fuel, damage = @damage WHERE id = @id";
+            command.Parameters.AddWithValue("@lifetime", lifetime);
+            command.CommandText = "UPDATE object_data SET inventory = @inventory, last_updated = NOW(), hitpoints = @hitpoints, position = @position, fuel = @fuel, damage = @damage, lifetime = @lifetime WHERE id = @id";
 
             String found = string.Empty;
 
