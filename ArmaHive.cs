@@ -174,7 +174,7 @@ namespace ArmaHive
                     row["hitpoints"] = "[]";
                 }
 
-                storage.Add("[" + row["id"] + ", \"" + row["class"] + "\", " + row["position"] + ", " + row["inventory"] + ", " + row["hitpoints"] + ", " + row["fuel"] + ", " + row["damage"] + ", " +  row["lifetime"] + "]");
+                storage.Add("[\"" + row["id"] + "\", \"" + row["class"] + "\", " + row["position"] + ", " + row["inventory"] + ", " + row["hitpoints"] + ", " + row["fuel"] + ", " + row["damage"] + ", " +  row["lifetime"] + "]");
             }
 
             command.Connection.Close();
