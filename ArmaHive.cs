@@ -223,7 +223,7 @@ namespace ArmaHive
             MySqlConnection sqlConnecton = ArmaSQL.GetConnection();
             MySqlCommand command = sqlConnecton.CreateCommand();
 
-            command.Parameters.AddWithValue("@id", int.Parse(id));
+            command.Parameters.AddWithValue("@id", id);
             command.Parameters.AddWithValue("@last_updated", DateTime.Now.ToString());
             command.Parameters.AddWithValue("@inventory", inventory);
             command.Parameters.AddWithValue("@hitpoints", hitPoints);
